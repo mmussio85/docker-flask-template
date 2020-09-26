@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  flask:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+  db:
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
+    volumes:
+      - ./var/pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
